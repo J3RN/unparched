@@ -7,13 +7,9 @@
     unParched
   </div>
 
-  <!-- {{> dial}} -->
   <div class="main">
     <div class="content">
-      <div id="dial" style="width:600px; height:200px; margin: 0px auto; ">
-        <div id="div2"></div>
-      </div>
-
+      {{> dial}}
       <h1>Trend chart</h1>
       <div id="chart"></div>
     </div>
@@ -21,6 +17,10 @@
 
 </body>
 
-<!-- <template name="dial"> -->
-<!--   <h1>Dial</h1> -->
-<!-- </template> -->
+
+<template name="dial">
+  <div id="dial" style="width:600px; height:200px; margin: 0px auto; ">
+    <div id="div2"></div>
+  </div>
+  <div id="takeReading">Take Reading</div>
+</template>

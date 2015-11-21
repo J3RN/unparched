@@ -24,6 +24,20 @@ div.content {
   padding: 5%;
 }
 
+div#takeReading {
+  display: inline-block;
+  background-color: blue;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+div#takeReading:hover {
+  background-color: lightblue;
+  color: black;
+}
+
 #test .arc2 {
   stroke-weight:0.1;
   fill: #3660b0;

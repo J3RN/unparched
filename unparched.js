@@ -22,52 +22,54 @@ if (Meteor.isClient) {
 
         graph.render();
 
-//----------- radial graph ------------------------------
-
-   var value = 75
-
-   var div2=d3.select(document.getElementById('div2'));
-
-   start(value);
-
-   function onClick1() {
-       deselect();
-       div1.attr("class","selectedRadial");
-   }
-
-   function onClick2() {
-       deselect();
-       div2.attr("class","selectedRadial");
-   }
-
-   function onClick3() {
-       deselect();
-       div3.attr("class","selectedRadial");
-   }
-
-   function labelFunction(val,min,max) {
-
-   }
-
-   function deselect() {
-       div1.attr("class","radial");
-       div2.attr("class","radial");
-       div3.attr("class","radial");
-   }
-
-   function start(value) {
-
-      var lastReading = new Date();
-      var lastReading_label = "Last reading: " + lastReading;
-
-       var rp2 = radialProgress(document.getElementById('div2'))
-               .label(lastReading_label)
-               .onClick(onClick2)
-               .diameter(200)
-               .value(value)
-               .render();
-   }
     });
+
+
+    //----------- radial graph ------------------------------
+
+       var value = 125
+
+       var div2=d3.select(document.getElementById('div2'));
+
+       start(value);
+
+       function onClick1() {
+           deselect();
+           div1.attr("class","selectedRadial");
+       }
+
+       function onClick2() {
+           deselect();
+           div2.attr("class","selectedRadial");
+       }
+
+       function onClick3() {
+           deselect();
+           div3.attr("class","selectedRadial");
+       }
+
+       function labelFunction(val,min,max) {
+
+       }
+
+       function deselect() {
+           div1.attr("class","radial");
+           div2.attr("class","radial");
+           div3.attr("class","radial");
+       }
+
+       function start(value) {
+
+          var lastReading = new Date();
+          var lastReading_label = "Last reading: " + lastReading;
+
+           var rp2 = radialProgress(document.getElementById('div2'))
+                   .label(lastReading_label)
+                   .onClick(onClick2)
+                   .diameter(200)
+                   .value(value)
+                   .render();
+       }
 
     function radialProgress(parent) {
     var _data=null,
@@ -302,6 +304,22 @@ if (Meteor.isClient) {
     return component;
 
 }
+
+  Template.dial.helpers({
+
+  })
+
+  Template.dial.events({
+    'click #takeReading': function() {
+      console.log('taking reading...');
+      var max = 200;
+      var r = Math.random();
+
+      var hydrationLevel = max * r
+      console.log("hydrationLevel:" + hydrationLevel)
+      start(hydrationLevel)
+    }
+  })
 
     // Template.trend-chart.helpers({
     //     data: function() {
