@@ -1,9 +1,17 @@
 if (Meteor.isClient || Meteor.isCordova) {
     // Subscriptions
-    Meteor.subscribe("samples");
+    Meteor.subscribe("samples", {
+        onReady: function() {
+            samples = Samples.find()
+                .fetch()
+                .sort(function(a, b) {
+                    return a.time - b.time;
+                });
+            drawGraph(samples);
+        }
+    });
 
     // Data sets
-    var points = [];
     var recent = [
         { time: new Date(), level: 121 },
         { time: new Date(), level: 76 },
@@ -14,41 +22,27 @@ if (Meteor.isClient || Meteor.isCordova) {
 
     // Startup
     Meteor.startup(function() {
-        var samplesCursor = Samples.find();
-
-        samplesCursor.observe({
-            added: function(doc) {
-                points.push(doc);
-                drawGraph(points);
-            }
-        });
-
         start(recent[0].level)
     });
 
-    // Rickshaw graphing function
-    function drawGraph(items) {
-        // Sort by time
-        items = items.sort(function(a, b) {
-            return a.time - b.time;
-        });
-
-        graphData = items.map(function(item) {
+    // Draw Graph
+    function drawGraph(samples) {
+        var graphData = samples.map(function(item) {
             return { x: item.time, y: item.level };
         });
 
-        var graph = new Rickshaw.Graph({
+        var lineGraph = new Rickshaw.Graph({
             element: document.querySelector("#chart"),
             width: 580,
             height: 250,
             series: [ {
                 color: 'steelblue',
-                data: graphData
+                data: graphData,
             } ],
             interpolation: 'linear'
         });
 
-        graph.render();
+        lineGraph.render();
     }
 
     // Radial graph
