@@ -12,6 +12,8 @@ if (Meteor.isClient || Meteor.isCordova) {
         { time: new Date(), level: 169 },
     ];
 
+    Session.set('userId', '1234567') //change
+
     // Startup
     Meteor.startup(function() {
         var samplesCursor = Samples.find();
@@ -330,13 +332,20 @@ if (Meteor.isClient || Meteor.isCordova) {
             var r = Math.random();
 
             var hydrationLevel = max * r
-                console.log("hydrationLevel:" + hydrationLevel);
+            console.log("hydrationLevel:" + hydrationLevel);
             start(hydrationLevel);
 
-            recent.unshift({ time: new Date(), level: hydrationLevel });
+            var entry = {
+              userId: Session.get("variableName"),
+              time: new Date(),
+              level: hydrationLevel
+            }
+
+            //insert new entry in collection
+            Samples.insert(entry)
+            //insert new entry in recents and remove last
+            recent.unshift(entry);
             recent.pop();
-            console.log(recent[0])
-                console.log(recent)
         }
     });
 }
