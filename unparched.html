@@ -5,15 +5,24 @@
 
 <body>
 
+  {{ > main }}
+
+</body>
+
+<template name="main">
   <div class="header">
     <img class="logo" src="img/unparched.png" />
   </div>
 
   <div class="main">
-    {{ > content }}
+    {{#if isDash}}
+      {{ > content }}
+    {{/if}}
+    {{#if isConfig}}
+      {{ > configure }}
+    {{/if}}
   </div>
-
-</body>
+</template>
 
 <template name="content">
   <div class="content">
@@ -21,6 +30,23 @@
     <h1>Recent Measurements</h1>
     <div id="chart"></div>
     <div id="takeReading">Take Reading</div>
+    <div id="configButton">Configure</div>
+  </div>
+</template>
+
+<template name="configure">
+  <div class="configure">
+    <h1>Configuration</h1>
+    <form>
+      <label for="name">Name: </label>
+      <input id="name" />
+      <label for="age">Age:</label>
+      <input id="age" />
+      <label for="height">Height: </label>
+      <input id="height" />
+      <label for="weight">Weight: </label>
+      <input id="weight" />
+    </form>
   </div>
 </template>
 

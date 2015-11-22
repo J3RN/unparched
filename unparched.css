@@ -24,6 +24,14 @@ h3 {
   padding: 0;
 }
 
+input {
+  display: block;
+  width: 70%;
+  height: 22px;
+  border: 1px solid steelblue;
+  margin: 10px;
+}
+
 div.header {
   background: lightblue;
   color: white;
@@ -52,7 +60,18 @@ div.content {
   text-align: center;
 }
 
+div.configure {
+  text-align: center;
+}
+
 div#takeReading {
+  display: inline-block;
+  background-color: #81badb;
+  padding: 10px 20px;
+  margin: 10px;
+}
+
+div#configButton {
   display: inline-block;
   background-color: #81badb;
   padding: 10px 20px;

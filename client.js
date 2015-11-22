@@ -5,6 +5,8 @@ if (Meteor.isClient || Meteor.isCordova) {
 
   Session.set('userId', '1234567') //change
 
+  Session.set('currentScreen', 'dash')
+
     // Subscriptions
     Meteor.subscribe("samples", {
         onReady: function() {
@@ -320,8 +322,13 @@ if (Meteor.isClient || Meteor.isCordova) {
 
     }
 
-    Template.dial.helpers({
-
+    Template.main.helpers({
+      isDash: function() {
+          return Session.get('currentScreen') == 'dash'
+      },
+      isConfig: function() {
+          return Session.get('currentScreen') == 'config'
+      }
     });
 
     Template.content.events({
@@ -345,6 +352,9 @@ if (Meteor.isClient || Meteor.isCordova) {
             //insert new entry in recents and remove last
             recent.unshift(entry);
             recent.pop();
+        },
+        'click #configButton': function() {
+          Session.set('currentScreen', 'config')
         }
     });
 }
