@@ -91,9 +91,9 @@ if (Meteor.isClient || Meteor.isCordova) {
         var _data = null,
                     _duration= 1000,
                     _selection,
-                    _margin = {top:0, right:0, bottom:30, left:0},
-                    __width = 300,
-                    __height = 300,
+                    _margin = {top:0, right:0, bottom:0, left:0},
+                    __width = 250,
+                    __height = 250,
                     _diameter = 150,
                     _label = "",
                     _fontSize = 10;
@@ -324,7 +324,7 @@ if (Meteor.isClient || Meteor.isCordova) {
 
     });
 
-    Template.dial.events({
+    Template.content.events({
         'click #takeReading': function() {
             console.log('taking reading...');
             var max = 200;

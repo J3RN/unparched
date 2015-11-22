@@ -10,15 +10,19 @@
   </div>
 
   <div class="main">
-    <div class="content">
-      {{ > dial }}
-      <h1>Recent Measurements</h1>
-      <div id="chart"></div>
-    </div>
+    {{ > content }}
   </div>
 
 </body>
 
+<template name="content">
+  <div class="content">
+    {{ > dial }}
+    <h1>Recent Measurements</h1>
+    <div id="chart"></div>
+    <div id="takeReading">Take Reading</div>
+  </div>
+</template>
 
 <template name="dial">
   <h1>Hydration Level</h1>
@@ -26,5 +30,4 @@
   <div id="dial">
     <div id="div2"></div>
   </div>
-  <div id="takeReading">Take Reading</div>
 </template>

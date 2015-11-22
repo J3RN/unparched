@@ -1,11 +1,12 @@
 
 body {
-  background-color: #FFFFFF;
+  background: linear-gradient(to bottom, white, #d8e5eb);
   width: 100%;
   height: 100vh;
   padding: 0;
   margin: 0;
   font-family: 'Roboto', sans-serif;
+  color: #252525;
 }
 
 h1 {
@@ -53,16 +54,9 @@ div.content {
 
 div#takeReading {
   display: inline-block;
-  background-color: blue;
-  color: white;
-  padding: 5px;
-  border-radius: 5px;
-  border: 1px solid black;
-}
-
-div#takeReading:hover {
-  background-color: lightblue;
-  color: black;
+  background-color: #81badb;
+  padding: 10px 20px;
+  margin: 10px;
 }
 
 #test .arc2 {
@@ -72,7 +66,7 @@ div#takeReading:hover {
 
 #div1, #div2, #div3, #div4 {
   width: 100%;
-  height: 200px;
+  padding: 10px;
   box-sizing: border-box;
   float: left;
 }
@@ -110,4 +104,5 @@ div#takeReading:hover {
 div#chart {
   display: inline-block;
   margin: 0 auto;
+  padding: 10px;
 }
