@@ -336,7 +336,7 @@ if (Meteor.isClient || Meteor.isCordova) {
     Template.main.events({
         'click #takeReading': function() {
             console.log('taking reading...');
-            var max = 200;
+            var max = 100;
             var r = Math.random();
 
             var hydrationLevel = max * r
