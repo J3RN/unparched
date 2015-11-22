@@ -1,6 +1,15 @@
 Samples = new Meteor.Collection("samples");
 
 if (Meteor.isClient) {
+
+  var recent = [
+    { time: new Date(), level: 121 },
+    { time: new Date(), level: 76 },
+    { time: new Date(), level: 90 },
+    { time: new Date(), level: 108 },
+    { time: new Date(), level: 169 },
+  ]
+
     Meteor.startup(function() {
         var data = Samples.find({});
 
@@ -21,6 +30,8 @@ if (Meteor.isClient) {
         });
 
         graph.render();
+
+        start(recent[0].level)
 
     });
 
@@ -66,7 +77,7 @@ if (Meteor.isClient) {
            var rp2 = radialProgress(document.getElementById('div2'))
                    .label(lastReading_label)
                    .onClick(onClick2)
-                   .diameter(200)
+                   .diameter(250)
                    .value(value)
                    .render();
        }
@@ -316,8 +327,13 @@ if (Meteor.isClient) {
       var r = Math.random();
 
       var hydrationLevel = max * r
-      console.log("hydrationLevel:" + hydrationLevel)
-      start(hydrationLevel)
+      console.log("hydrationLevel:" + hydrationLevel);
+      start(hydrationLevel);
+
+      recent.unshift({ time: new Date(), level: hydrationLevel });
+      recent.pop();
+      console.log(recent[0])
+      console.log(recent)
     }
   })
 

@@ -1,10 +1,14 @@
 
 body {
   background-color: #FFFFFF;
+  width: 100%;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
 }
 
 div.header {
-  background: blue;
+  background: lightblue;
   color: white;
   width: 100%;
   height: 10%;
@@ -15,6 +19,10 @@ div.header {
 div.main {
   width: 100%;
   height: 90%;
+}
+
+img.logo {
+  height: 95%;
 }
 
 div.content {
@@ -52,7 +60,7 @@ div#takeReading:hover {
 
 #div2 .arc {
   stroke-weight: 0.1;
-  fill: #f0a417;
+  fill: #40ff00;
 }
 
 #div2 .arc2 {
