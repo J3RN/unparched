@@ -260,7 +260,7 @@ if (Meteor.isClient || Meteor.isCordova) {
             _arc.outerRadius(_width/2);
             _arc.innerRadius(_width/2 * .85);
             _arc2.outerRadius(_width/2 * .85);
-            _arc2.innerRadius(_width/2 * .85 - (_width/2 * .15));
+            _arc2.innerRadius(_width/2 * .85 - (_width/2 * .075));
         }
 
 
