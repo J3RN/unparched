@@ -1,55 +1,50 @@
 if (Meteor.isClient || Meteor.isCordova) {
 
   // Data sets
-  var points = [];
   var recent = [];
+
   Session.set('userId', '1234567') //change
 
     // Subscriptions
-    Meteor.subscribe("samples");
+    Meteor.subscribe("samples", {
+        onReady: function() {
+            // samples = Samples.find()
+            //     .fetch()
+            //     .sort(function(a, b) {
+            //         return a.time - b.time;
+            //     });
+            // drawGraph(samples);
+            recent = Samples.find({userId: Session.get('userId')}, { sort: { time: -1 }, limit: 5 }).fetch();
+            console.log('loaded recent: ' + recent.join(", "));
+            console.log('most recent: ' + recent[0].level + ' time: ' + recent[0].time);
+
+            start(recent[0].level);
+            drawGraph(recent);
+        }
+    });
 
     // Startup
     Meteor.startup(function() {
-
-      recent = Samples.find({userId: Session.get('userId')}, { sort: { time: -1 }, limit: 5 }).fetch()
-      console.log('loaded recent: ' + recent)
-      console.log('most recent: ' + recent[0].level + ' time: ' + recent[0].time)
-
-        var samplesCursor = Samples.find();
-
-        samplesCursor.observe({
-            added: function(doc) {
-                points.push(doc);
-                drawGraph(points);
-            }
-        });
-
-        start(recent[0].level)
     });
 
-    // Rickshaw graphing function
-    function drawGraph(items) {
-        // Sort by time
-        items = items.sort(function(a, b) {
-            return a.time - b.time;
+    // Draw Graph
+    function drawGraph(samples) {
+        var graphData = samples.map(function(item, index) {
+            return { x: index, y: item.level };
         });
 
-        graphData = items.map(function(item) {
-            return { x: item.time, y: item.level };
-        });
-
-        var graph = new Rickshaw.Graph({
+        var lineGraph = new Rickshaw.Graph({
             element: document.querySelector("#chart"),
             width: 580,
             height: 250,
             series: [ {
                 color: 'steelblue',
-                data: graphData
+                data: graphData,
             } ],
             interpolation: 'linear'
         });
 
-        graph.render();
+        lineGraph.render();
     }
 
     // Radial graph
