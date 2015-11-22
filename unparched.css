@@ -41,12 +41,30 @@ h3 {
   color: dimgray;
 }
 
+span.back-arrow {
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
+  font-size: 2em;
+}
+
+h1#config-title {
+  padding-bottom: 30px;
+}
+
+label {
+  font-weight: bold;
+  padding-top: 10px;
+}
+
 input {
   display: block;
   width: 70%;
   height: 22px;
   border: 1px solid steelblue;
-  margin: 10px;
+  margin: 10px auto;
 }
 
 div.header {
@@ -67,19 +85,9 @@ h1.section-title {
   padding-top: 25px;
 }
 
-div.configIcon {
-  line-height: 2.3em;
-  float: right;
-  position: absolute;
-  right: 20px;
-  top: 10px;
-  z-index: 2;
-}
-
 img#configIcon {
   position: absolute;
-  /* float: right; */
-  /* padding: 17px 17px 0 0; */
+  cursor: pointer;
   top: 17px;
   right: 17px;
 

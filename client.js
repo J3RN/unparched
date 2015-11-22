@@ -34,10 +34,6 @@ if (Meteor.isClient || Meteor.isCordova) {
         }
     });
 
-    // Startup
-    Meteor.startup(function() {
-    });
-
     // Draw Graph
     function drawGraph(samples) {
         var graphData = samples.map(function(item, index) {
@@ -356,9 +352,18 @@ if (Meteor.isClient || Meteor.isCordova) {
             recent.pop();
             Session.set('recent', recent)
         },
-        'click .configIcon': function() {
+        'click #configIcon': function() {
           console.log('clicked config icon')
           Session.set('currentScreen', 'config')
+        },
+        'click .back-arrow': function() {
+            Session.set('currentScreen', 'dash');
+
+            setTimeout(function() {
+                // Redraw graphs
+                start(Session.get('recent')[0].level);
+                drawGraph(Session.get('recent').reverse());
+            }, 10);
         }
     });
 
