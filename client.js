@@ -14,12 +14,19 @@ if (Meteor.isClient || Meteor.isCordova) {
             //         return a.time - b.time;
             //     });
             // drawGraph(samples);
-            recent = Samples.find({userId: Session.get('userId')}, { sort: { time: -1 }, limit: 5 }).fetch();
-            console.log('loaded recent: ' + recent.join(", "));
-            console.log('most recent: ' + recent[0].level + ' time: ' + recent[0].time);
+            var initRecent = setInterval(function(){
+              if(typeof Samples !== undefined) {
+              recent = Samples.find({userId: Session.get('userId')}, { sort: { time: -1 }, limit: 10 }).fetch();
+              console.log('loaded recent: ' + recent.join(", "));
+              console.log('most recent: ' + recent[0].level + ' time: ' + recent[0].time);
 
-            start(recent[0].level);
-            drawGraph(recent);
+              start(recent[0].level);
+              drawGraph(recent);
+
+              clearInterval(initRecent)
+            }
+            else { console.log('not loaded yet!!') }
+          }, 400);
         }
     });
 
