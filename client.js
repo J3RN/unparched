@@ -42,8 +42,8 @@ if (Meteor.isClient || Meteor.isCordova) {
 
         var lineGraph = new Rickshaw.Graph({
             element: document.querySelector("#chart"),
-            width: 580,
-            height: 250,
+            width: 350,
+            height: 150,
             series: [ {
                 color: 'steelblue',
                 data: graphData,
@@ -55,11 +55,7 @@ if (Meteor.isClient || Meteor.isCordova) {
     }
 
     // Radial graph
-    var value = 125;
-
     var div2 = d3.select(document.getElementById('div2'));
-
-    start(value);
 
     function onClick1() {
         deselect();
@@ -83,11 +79,8 @@ if (Meteor.isClient || Meteor.isCordova) {
     }
 
     function start(value) {
-        var lastReading = new Date();
-        var lastReading_label = "Last reading: " + lastReading;
 
         var rp2 = radialProgress(document.getElementById('div2'))
-            .label(lastReading_label)
             .onClick(onClick2)
             .diameter(250)
             .value(value)
@@ -184,7 +177,7 @@ if (Meteor.isClient || Meteor.isCordova) {
                 label.enter().append("text")
                     .attr("class","label")
                     .attr("y",_width/2+_fontSize/3)
-                    .attr("x",_width/2)
+                    .attr("x",_width/3)
                     .attr("cursor","pointer")
                     .attr("width",_width)
                     // .attr("x",(3*_fontSize/2))
