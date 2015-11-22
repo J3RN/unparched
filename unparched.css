@@ -36,7 +36,7 @@ h2 {
 
 h3 {
   margin: 0;
-  padding: 0;
+  padding: 10px;
   font-size: 16px;
   color: dimgray;
 }
@@ -62,15 +62,27 @@ div.header {
   box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.35);
 }
 
+h1.section-title {
+  clear: both;
+  padding-top: 25px;
+}
+
 div.configIcon {
   line-height: 2.3em;
-  position: fixed;
+  float: right;
+  position: absolute;
   right: 20px;
   top: 10px;
   z-index: 2;
 }
 
 img#configIcon {
+  position: absolute;
+  /* float: right; */
+  /* padding: 17px 17px 0 0; */
+  top: 17px;
+  right: 17px;
+
   width: 35px;
   height: 35px;
   opacity: 0.75;
@@ -83,12 +95,10 @@ div.main {
 }
 
 img.logo {
-  height: 95%;
   height: 1.5em;
-  display: inline;
-  /* line-height: 3; */
+  /* display: inline; */
   vertical-align: middle;
-  position: relative;
+  /* position: relative; */
 }
 
 div.content {
