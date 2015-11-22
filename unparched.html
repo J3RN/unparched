@@ -12,6 +12,9 @@
 <template name="main">
   <div class="header">
     <img class="logo" src="img/unparched.png" />
+    <div class="configIcon">
+      <img id="configIcon" src="http://www.clipartbest.com/cliparts/aTq/oq9/aTqoq9gXc.png" />
+    </div>
   </div>
 
   <div class="main">
@@ -30,7 +33,6 @@
     <h1>Recent Measurements</h1>
     <div id="chart"></div><br />
     <div id="takeReading">Take Reading</div>
-    <div id="configButton">Configure</div>
   </div>
 </template>
 
@@ -52,7 +54,7 @@
 
 <template name="dial">
   <h1>Hydration Level</h1>
-  <h3>Last Reading: (date here)</h3>
+  <h3>Last Reading: {{{ getLastDate }}}</h3>
   <div id="dial">
     <div id="div2"></div>
   </div>

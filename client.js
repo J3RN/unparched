@@ -3,6 +3,8 @@ if (Meteor.isClient || Meteor.isCordova) {
   // Data sets
   var recent = [];
 
+  Session.set('recent', recent)
+
   Session.set('userId', '1234567') //change
 
   Session.set('currentScreen', 'dash')
@@ -19,8 +21,8 @@ if (Meteor.isClient || Meteor.isCordova) {
             var initRecent = setInterval(function(){
               if(typeof Samples !== undefined) {
               recent = Samples.find({userId: Session.get('userId')}, { sort: { time: -1 }, limit: 10 }).fetch();
-              console.log('loaded recent: ' + recent.join(", "));
-              console.log('most recent: ' + recent[0].level + ' time: ' + recent[0].time);
+              Session.set("recent", recent);
+
 
               start(recent[0].level);
               drawGraph(recent.reverse());
@@ -331,7 +333,7 @@ if (Meteor.isClient || Meteor.isCordova) {
       }
     });
 
-    Template.content.events({
+    Template.main.events({
         'click #takeReading': function() {
             console.log('taking reading...');
             var max = 200;
@@ -352,9 +354,17 @@ if (Meteor.isClient || Meteor.isCordova) {
             //insert new entry in recents and remove last
             recent.unshift(entry);
             recent.pop();
+            Session.set('recent', recent)
         },
-        'click #configButton': function() {
+        'click .configIcon': function() {
+          console.log('clicked config icon')
           Session.set('currentScreen', 'config')
         }
     });
+
+    Template.dial.helpers({
+      getLastDate: function() {
+        return Session.get('recent')[0].time
+      }
+    })
 }
