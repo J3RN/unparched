@@ -28,6 +28,11 @@ if (Meteor.isClient || Meteor.isCordova) {
 
     // Rickshaw graphing function
     function drawGraph(items) {
+        // Sort by time
+        items = items.sort(function(a, b) {
+            return a.time - b.time;
+        });
+
         graphData = items.map(function(item) {
             return { x: item.time, y: item.level };
         });
