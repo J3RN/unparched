@@ -23,7 +23,7 @@ if (Meteor.isClient || Meteor.isCordova) {
               console.log('most recent: ' + recent[0].level + ' time: ' + recent[0].time);
 
               start(recent[0].level);
-              drawGraph(recent);
+              drawGraph(recent.reverse());
 
               clearInterval(initRecent)
             }

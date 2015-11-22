@@ -52,8 +52,6 @@ img.logo {
 }
 
 div.content {
-  position: relative;
-  display: inline-block;
   margin: 0 auto;
   width: 80%;
   padding: 0;
