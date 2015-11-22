@@ -1,19 +1,20 @@
 if (Meteor.isClient || Meteor.isCordova) {
+
+  // Data sets
+  var points = [];
+  var recent = [];
+  Session.set('userId', '1234567') //change
+
     // Subscriptions
     Meteor.subscribe("samples");
 
-    // Data sets
-    var points = [];
-    var recent = [
-        { time: new Date(), level: 121 },
-        { time: new Date(), level: 76 },
-        { time: new Date(), level: 90 },
-        { time: new Date(), level: 108 },
-        { time: new Date(), level: 169 },
-    ];
-
     // Startup
     Meteor.startup(function() {
+
+      recent = Samples.find({userId: Session.get('userId')}, { sort: { time: -1 }, limit: 5 }).fetch()
+      console.log('loaded recent: ' + recent)
+      console.log('most recent: ' + recent[0].level + ' time: ' + recent[0].time)
+
         var samplesCursor = Samples.find();
 
         samplesCursor.observe({
@@ -335,13 +336,20 @@ if (Meteor.isClient || Meteor.isCordova) {
             var r = Math.random();
 
             var hydrationLevel = max * r
-                console.log("hydrationLevel:" + hydrationLevel);
+            console.log("hydrationLevel:" + hydrationLevel);
             start(hydrationLevel);
 
-            recent.unshift({ time: new Date(), level: hydrationLevel });
+            var entry = {
+              userId: Session.get("userId"),
+              time: new Date().getTime(),
+              level: hydrationLevel
+            }
+
+            //insert new entry in collection
+            Samples.insert(entry)
+            //insert new entry in recents and remove last
+            recent.unshift(entry);
             recent.pop();
-            console.log(recent[0])
-                console.log(recent)
         }
     });
 }
