@@ -9,6 +9,21 @@ body {
   color: #252525;
 }
 
+div.droplet {
+  position: fixed;
+  top: 100;
+  left: 100;
+  z-index: 2;
+  width: 200px;
+  height: 300px;
+}
+
+img.droplet {
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+}
+
 h1 {
   margin: 10px 0 0 0;
   padding: 0;
@@ -22,6 +37,8 @@ h2 {
 h3 {
   margin: 0;
   padding: 0;
+  font-size: 16px;
+  color: dimgray;
 }
 
 input {

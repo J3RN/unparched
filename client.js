@@ -364,7 +364,7 @@ if (Meteor.isClient || Meteor.isCordova) {
 
     Template.dial.helpers({
       getLastDate: function() {
-        return Session.get('recent')[0].time
+        return new Date(Session.get('recent')[0].time)
       }
     })
 }
