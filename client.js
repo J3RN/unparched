@@ -139,10 +139,10 @@ if (Meteor.isClient || Meteor.isCordova) {
 
                 _arc.endAngle(360 * (Math.PI/180))
 
-                    background.append("rect")
-                    .attr("class","background")
-                    .attr("width", _width)
-                    .attr("height", _height);
+                    // background.append("rect")
+                    // .attr("class","background")
+                    // .attr("width", _width)
+                    // .attr("height", _height);
 
                 background.append("path")
                     .attr("transform", "translate(" + _width/2 + "," + _width/2 + ")")
